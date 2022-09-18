@@ -36,7 +36,7 @@ pip install dresden
 
 You can read the following datasets with this package:
 
-- Disabled parking spaces / Parken für Menschen mit Behinderungen] (476)
+- Disabled parking spaces / Parken für Menschen mit Behinderungen (476)
 
 There are a number of parameters you can set to retrieve the data:
 
