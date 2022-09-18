@@ -13,7 +13,6 @@
 [![Issues][issues-shield]][issues-url]
 [![GitHub Last Commit][last-commit-shield]][commits-url]
 
-[![Code Quality][code-quality-shield]][code-quality]
 [![Maintainability][maintainability-shield]][maintainability-url]
 [![Code Coverage][codecov-shield]][codecov-url]
 
@@ -172,11 +171,9 @@ SOFTWARE.
 <!-- MARKDOWN LINKS & IMAGES -->
 [build-shield]: https://github.com/klaasnicolaas/python-dresden/actions/workflows/tests.yaml/badge.svg
 [build-url]: https://github.com/klaasnicolaas/python-dresden/actions/workflows/tests.yaml
-[code-quality-shield]: https://img.shields.io/lgtm/grade/python/g/klaasnicolaas/python-dresden.svg?logo=lgtm&logoWidth=18
-[code-quality]: https://lgtm.com/projects/g/klaasnicolaas/python-dresden/context:python
 [commits-shield]: https://img.shields.io/github/commit-activity/y/klaasnicolaas/python-dresden.svg
 [commits-url]: https://github.com/klaasnicolaas/python-dresden/commits/main
-[codecov-shield]: https://codecov.io/gh/klaasnicolaas/python-dresden/branch/main/graph/badge.svg?token=3eJrHm0kV5
+[codecov-shield]: https://codecov.io/gh/klaasnicolaas/python-dresden/branch/main/graph/badge.svg?token=70ZETUK1M6
 [codecov-url]: https://codecov.io/gh/klaasnicolaas/python-dresden
 [forks-shield]: https://img.shields.io/github/forks/klaasnicolaas/python-dresden.svg
 [forks-url]: https://github.com/klaasnicolaas/python-dresden/network/members
@@ -185,7 +182,7 @@ SOFTWARE.
 [license-shield]: https://img.shields.io/github/license/klaasnicolaas/python-dresden.svg
 [last-commit-shield]: https://img.shields.io/github/last-commit/klaasnicolaas/python-dresden.svg
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg
-[maintainability-shield]: https://api.codeclimate.com/v1/badges/516ae9d66f0766a671d0/maintainability
+[maintainability-shield]: https://api.codeclimate.com/v1/badges/c1c6a794bf0db0086c87/maintainability
 [maintainability-url]: https://codeclimate.com/github/klaasnicolaas/python-dresden/maintainability
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-experimental-yellow.svg
 [pypi]: https://pypi.org/project/dresden/
