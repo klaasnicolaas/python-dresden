@@ -1,4 +1,5 @@
-## Python - ODP Dresden Client
+<!-- Banner -->
+![alt Banner of the ODP Dresden package](https://raw.githubusercontent.com/klaasnicolaas/python-dresden/main/assets/header_dresden-min.png)
 
 <!-- PROJECT SHIELDS -->
 [![GitHub Release][releases-shield]][releases]
