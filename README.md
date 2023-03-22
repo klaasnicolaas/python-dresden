@@ -1,4 +1,5 @@
-## Python - ODP Dresden Client
+<!-- Banner -->
+![alt Banner of the ODP Dresden package](https://raw.githubusercontent.com/klaasnicolaas/python-dresden/main/assets/header_dresden-min.png)
 
 <!-- PROJECT SHIELDS -->
 [![GitHub Release][releases-shield]][releases]
@@ -8,16 +9,17 @@
 [![License][license-shield]](LICENSE)
 
 [![GitHub Activity][commits-shield]][commits-url]
-[![Forks][forks-shield]][forks-url]
+[![PyPi Downloads][downloads-shield]][downloads-url]
+[![GitHub Last Commit][last-commit-shield]][commits-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![GitHub Last Commit][last-commit-shield]][commits-url]
+
+[![Code Quality][code-quality-shield]][code-quality]
+[![Build Status][build-shield]][build-url]
+[![Typing Status][typing-shield]][typing-url]
 
 [![Maintainability][maintainability-shield]][maintainability-url]
 [![Code Coverage][codecov-shield]][codecov-url]
-
-[![Build Status][build-shield]][build-url]
-[![Typing Status][typing-shield]][typing-url]
 
 Asynchronous Python client for the open datasets of Dresden (Germany).
 
@@ -35,7 +37,7 @@ pip install dresden
 
 You can read the following datasets with this package:
 
-- Disabled parking spaces / Parken für Menschen mit Behinderungen (477)
+- [Disabled parking spaces / Parken für Menschen mit Behinderungen][disabled_parkings] (477)
 
 There are a number of parameters you can set to retrieve the data:
 
@@ -168,15 +170,19 @@ SOFTWARE.
 [api]: https://opendata.dresden.de
 [nipkaart]: https://www.nipkaart.nl
 
+[disabled_parkings]: https://opendata.dresden.de/informationsportal/?open=1&result=1788DE054C09464DB95AD54725002EA2#app/mainpage
+
 <!-- MARKDOWN LINKS & IMAGES -->
 [build-shield]: https://github.com/klaasnicolaas/python-dresden/actions/workflows/tests.yaml/badge.svg
 [build-url]: https://github.com/klaasnicolaas/python-dresden/actions/workflows/tests.yaml
+[code-quality-shield]: https://github.com/klaasnicolaas/python-dresden/actions/workflows/codeql.yaml/badge.svg
+[code-quality]: https://github.com/klaasnicolaas/python-dresden/actions/workflows/codeql.yaml
 [commits-shield]: https://img.shields.io/github/commit-activity/y/klaasnicolaas/python-dresden.svg
 [commits-url]: https://github.com/klaasnicolaas/python-dresden/commits/main
 [codecov-shield]: https://codecov.io/gh/klaasnicolaas/python-dresden/branch/main/graph/badge.svg?token=70ZETUK1M6
 [codecov-url]: https://codecov.io/gh/klaasnicolaas/python-dresden
-[forks-shield]: https://img.shields.io/github/forks/klaasnicolaas/python-dresden.svg
-[forks-url]: https://github.com/klaasnicolaas/python-dresden/network/members
+[downloads-shield]: https://img.shields.io/pypi/dm/dresden
+[downloads-url]: https://pypistats.org/packages/dresden
 [issues-shield]: https://img.shields.io/github/issues/klaasnicolaas/python-dresden.svg
 [issues-url]: https://github.com/klaasnicolaas/python-dresden/issues
 [license-shield]: https://img.shields.io/github/license/klaasnicolaas/python-dresden.svg
