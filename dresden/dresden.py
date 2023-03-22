@@ -5,11 +5,11 @@ import asyncio
 import socket
 from dataclasses import dataclass
 from importlib import metadata
-from typing import Any
+from typing import Any, cast
 
-import aiohttp
 import async_timeout
-from aiohttp import hdrs
+from aiohttp import ClientError, ClientSession
+from aiohttp.hdrs import METH_GET
 from yarl import URL
 
 from .exceptions import ODPDresdenConnectionError, ODPDresdenError
@@ -21,7 +21,7 @@ class ODPDresden:
     """Main class for handling data fetchting from Open Data Platform of Dresden."""
 
     request_timeout: float = 10.0
-    session: aiohttp.client.ClientSession | None = None
+    session: ClientSession | None = None
 
     _close_session: bool = False
 
@@ -29,21 +29,24 @@ class ODPDresden:
         self,
         uri: str,
         *,
-        method: str = hdrs.METH_GET,
+        method: str = METH_GET,
         params: dict[str, Any] | None = None,
     ) -> Any:
         """Handle a request to the Open Data Platform API of Dresden.
 
         Args:
+        ----
             uri: Request URI, without '/', for example, 'status'
             method: HTTP method to use, for example, 'GET'
             params: Extra options to improve or limit the response.
 
         Returns:
+        -------
             A Python dictionary (text) with the response from
             the Open Data Platform API of Dresden.
 
         Raises:
+        ------
             ODPDresdenConnectionError: Timeout occurred while
                 connecting to the Open Data Platform API.
             ODPDresdenError: If the data is not valid.
@@ -61,7 +64,7 @@ class ODPDresden:
         }
 
         if self.session is None:
-            self.session = aiohttp.ClientSession()
+            self.session = ClientSession()
             self._close_session = True
 
         try:
@@ -75,31 +78,36 @@ class ODPDresden:
                 )
                 response.raise_for_status()
         except asyncio.TimeoutError as exception:
+            msg = "Timeout occurred while connecting to the Open Data Platform API."
             raise ODPDresdenConnectionError(
-                "Timeout occurred while connecting to the Open Data Platform API."
+                msg,
             ) from exception
-        except (aiohttp.ClientError, socket.gaierror) as exception:
+        except (ClientError, socket.gaierror) as exception:
+            msg = "Error occurred while communicating with Open Data Platform API."
             raise ODPDresdenConnectionError(
-                "Error occurred while communicating with Open Data Platform API."
+                msg,
             ) from exception
 
         content_type = response.headers.get("Content-Type", "")
         if "application/geo+json" not in content_type:
             text = await response.text()
+            msg = "Unexpected content type response from the Open Data Platform API"
             raise ODPDresdenError(
-                "Unexpected content type response from the Open Data Platform API",
+                msg,
                 {"Content-Type": content_type, "Response": text},
             )
 
-        return await response.json()
+        return cast(dict[str, Any], await response.json())
 
     async def disabled_parkings(self, limit: int = 10) -> list[DisabledParking]:
         """Get list of disabled parkings.
 
         Args:
+        ----
             limit: Maximum number of disabled parkings to return.
 
         Returns:
+        -------
             A list of disabled parking objects.
         """
         results: list[DisabledParking] = []
@@ -122,7 +130,8 @@ class ODPDresden:
     async def __aenter__(self) -> ODPDresden:
         """Async enter.
 
-        Returns:
+        Returns
+        -------
             The Open Data Platform Dresden object.
         """
         return self
@@ -131,6 +140,7 @@ class ODPDresden:
         """Async exit.
 
         Args:
+        ----
             _exc_info: Exec type.
         """
         await self.close()

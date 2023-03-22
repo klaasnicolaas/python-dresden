@@ -5,6 +5,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Any
 
+import pytz
+
 
 @dataclass
 class DisabledParking:
@@ -19,13 +21,15 @@ class DisabledParking:
     latitude: float
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> DisabledParking:
+    def from_dict(cls: type[DisabledParking], data: dict[str, Any]) -> DisabledParking:
         """Return a DisabledParking object from a dictionary.
 
         Args:
+        ----
             data: The data from the API.
 
         Returns:
+        -------
             A DisabledParking object.
         """
         attr = data["properties"]
@@ -45,14 +49,18 @@ def strptime(date_string: str, date_format: str, default: None = None) -> Any:
     """Strptime function with default value.
 
     Args:
+    ----
         date_string: The date string.
         date_format: The format of the date string.
         default: The default value.
 
     Returns:
+    -------
         The datetime object.
     """
     try:
-        return datetime.strptime(date_string, date_format)
+        return datetime.strptime(date_string, date_format).astimezone(
+            pytz.timezone("Europe/Berlin"),
+        )
     except (ValueError, TypeError):
         return default
