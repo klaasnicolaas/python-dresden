@@ -110,17 +110,13 @@ class ODPDresden:
         -------
             A list of disabled parking objects.
         """
-        results: list[DisabledParking] = []
         locations = await self._request(
             "L1113/items",
             params={
                 "limit": limit,
             },
         )
-
-        for item in locations["features"]:
-            results.append(DisabledParking.from_dict(item))
-        return results
+        return [DisabledParking.from_dict(item) for item in locations["features"]]
 
     async def close(self) -> None:
         """Close open client session."""
