@@ -49,6 +49,7 @@ class ODPDresden:
             ODPDresdenConnectionError: Timeout occurred while
                 connecting to the Open Data Platform API.
             ODPDresdenError: If the data is not valid.
+
         """
         version = metadata.version(__package__)
         url = URL.build(
@@ -108,6 +109,7 @@ class ODPDresden:
         Returns:
         -------
             A list of disabled parking objects.
+
         """
         locations = await self._request(
             "L1113/items",
@@ -128,6 +130,7 @@ class ODPDresden:
         Returns
         -------
             The Open Data Platform Dresden object.
+
         """
         return self
 
@@ -137,5 +140,6 @@ class ODPDresden:
         Args:
         ----
             _exc_info: Exec type.
+
         """
         await self.close()
