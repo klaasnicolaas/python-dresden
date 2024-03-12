@@ -1,4 +1,5 @@
 """Models for Open Data Platform of Dresden."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
