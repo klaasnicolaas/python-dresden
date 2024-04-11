@@ -35,7 +35,7 @@ pytz = ">=2024.1,<2024.2.0"
 Changelog = "https://github.com/klaasnicolaas/python-dresden/releases"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "0.3.5"
+ruff = "0.3.6"
 aresponses = "3.0.0"
 codespell = "2.2.6"
 coverage = {version = "7.4.4", extras = ["toml"]}
