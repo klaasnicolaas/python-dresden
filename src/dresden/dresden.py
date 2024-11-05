@@ -15,6 +15,8 @@ from yarl import URL
 from .exceptions import ODPDresdenConnectionError, ODPDresdenError
 from .models import DisabledParking
 
+VERSION = metadata.version(__package__)
+
 
 @dataclass
 class ODPDresden:
@@ -52,7 +54,6 @@ class ODPDresden:
             ODPDresdenError: If the data is not valid.
 
         """
-        version = metadata.version(__package__)
         url = URL.build(
             scheme="https",
             host="kommisdd.dresden.de",
@@ -61,7 +62,7 @@ class ODPDresden:
 
         headers = {
             "Accept": "application/geo+json",
-            "User-Agent": f"PythonODPDresden/{version}",
+            "User-Agent": f"PythonODPDresden/{VERSION}",
         }
 
         if self.session is None:
