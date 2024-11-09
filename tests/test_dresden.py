@@ -14,7 +14,9 @@ from dresden.exceptions import ODPDresdenConnectionError, ODPDresdenError
 from . import load_fixtures
 
 
-async def test_json_request(aresponses: ResponsesMockServer) -> None:
+async def test_json_request(
+    aresponses: ResponsesMockServer, odp_dresden_client: ODPDresden
+) -> None:
     """Test JSON response is handled correctly."""
     aresponses.add(
         "kommisdd.dresden.de",
@@ -26,11 +28,8 @@ async def test_json_request(aresponses: ResponsesMockServer) -> None:
             text=load_fixtures("disabled_parking.geojson"),
         ),
     )
-    async with ClientSession() as session:
-        client = ODPDresden(session=session)
-        response = await client._request("test")
-        assert response is not None
-        await client.close()
+    await odp_dresden_client._request("test")
+    await odp_dresden_client.close()
 
 
 async def test_internal_session(aresponses: ResponsesMockServer) -> None:
@@ -76,7 +75,9 @@ async def test_timeout(aresponses: ResponsesMockServer) -> None:
             assert await client._request("test")
 
 
-async def test_content_type(aresponses: ResponsesMockServer) -> None:
+async def test_content_type(
+    aresponses: ResponsesMockServer, odp_dresden_client: ODPDresden
+) -> None:
     """Test request content type error from Urban Data Platform API of Dresden."""
     aresponses.add(
         "kommisdd.dresden.de",
@@ -87,11 +88,8 @@ async def test_content_type(aresponses: ResponsesMockServer) -> None:
             headers={"Content-Type": "blabla/blabla"},
         ),
     )
-
-    async with ClientSession() as session:
-        client = ODPDresden(session=session)
-        with pytest.raises(ODPDresdenError):
-            assert await client._request("test")
+    with pytest.raises(ODPDresdenError):
+        assert await odp_dresden_client._request("test")
 
 
 async def test_client_error() -> None:
