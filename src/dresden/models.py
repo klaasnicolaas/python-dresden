@@ -17,7 +17,7 @@ class DisabledParking:
     number: int
     usage_time: str
     photo: str
-    created_at: datetime
+    created_at: datetime | None
     longitude: float
     latitude: float
 
@@ -41,29 +41,11 @@ class DisabledParking:
             number=attr.get("stellplatzanzahl"),
             usage_time=attr.get("nutzungszeit"),
             photo=attr.get("url_www"),
-            created_at=strptime(attr.get("kks_mdd"), "%d.%m.%Y %H:%M:%S"),
+            created_at=datetime.strptime(
+                attr.get("kks_mdd"), "%d.%m.%Y %H:%M:%S"
+            ).replace(tzinfo=pytz.timezone("Europe/Berlin"))
+            if attr.get("kks_mdd")
+            else None,
             longitude=geo[0],
             latitude=geo[1],
         )
-
-
-def strptime(date_string: str, date_format: str, default: None = None) -> Any:
-    """Strptime function with default value.
-
-    Args:
-    ----
-        date_string: The date string.
-        date_format: The format of the date string.
-        default: The default value.
-
-    Returns:
-    -------
-        The datetime object.
-
-    """
-    try:
-        return datetime.strptime(date_string, date_format).astimezone(
-            pytz.timezone("Europe/Berlin"),
-        )
-    except (ValueError, TypeError):
-        return default
