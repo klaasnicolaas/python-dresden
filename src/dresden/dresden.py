@@ -15,7 +15,7 @@ from yarl import URL
 from .exceptions import ODPDresdenConnectionError, ODPDresdenError
 from .models import DisabledParking
 
-VERSION = metadata.version(__package__)
+VERSION: str = metadata.version(__package__)  # ty:ignore[invalid-argument-type]
 
 
 @dataclass
