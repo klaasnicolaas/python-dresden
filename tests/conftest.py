@@ -9,7 +9,7 @@ from dresden import ODPDresden
 
 
 @pytest.fixture(name="odp_dresden_client")
-async def client() -> AsyncGenerator[ODPDresden, None]:
+async def client() -> AsyncGenerator[ODPDresden]:
     """Return an ODP Dresden client."""
     async with (
         ClientSession() as session,
